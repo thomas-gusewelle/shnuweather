@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World`</title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+</head>
+<body>
+<div th:replace="~{/components/navbar :: navbar}"></div>
+<div class="container">
+
+
+    <div class="d-flex justify-content-end">
+        <button onclick="getLocation()" class="btn btn-dark">Find my Location</button>
+    </div>
+
+    <form th:action="@{/search}" th:object="${coordinateForm}" method="post">
+        <label for="longitudeInput" class="form-label">Longitude</label>
+        <input class="form-control" id="longitudeInput" th:field="*{longitude}"></input>
+
+        <label for="latitudeInput" class="form-label">Longitude</label>
+        <input class="form-control" id="latitudeInput" th:field="*{latitude}"></input>
+
+
+        <button class="mt-2 btn btn-primary">Submit</button>
+    </form>
+</div>
+
+<script src="/assets/js/location.js"></script>
+</body>
+</html>
