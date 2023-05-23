@@ -2,20 +2,25 @@ package com.example.SNHUWeather.shnuweather.models;
 
 import java.util.ArrayList;
 
+// Model for the forecast api endpoint
+// See https://www.weather.gov/documentation/services-web-api
 public class WeatherEndPoint {
-    Properties PropertiesObject;
-
+private Properties properties;
 
     // Getter Methods
-
     public Properties getProperties() {
-        return PropertiesObject;
+        return this.properties;
+    }
+    public ArrayList<Period> getPeriods(){
+        return this.properties.getPeriods();
+    }
+    public String getGeneratedAt(){
+        return this.properties.getGeneratedAt();
     }
 
     // Setter Methods
-
     public void setProperties(Properties propertiesObject) {
-        this.PropertiesObject = propertiesObject;
+        this.properties = propertiesObject;
     }
 }
 class Properties {
@@ -26,7 +31,7 @@ class Properties {
     private String updateTime;
     private String validTimes;
     Elevation ElevationObject;
-    ArrayList< Object > periods = new ArrayList < Object > ();
+    private final ArrayList<Period> periods = new ArrayList<>();
 
 
     // Getter Methods
@@ -87,6 +92,52 @@ class Properties {
 
     public void setElevation(Elevation elevationObject) {
         this.ElevationObject = elevationObject;
+    }
+
+    public ArrayList<Period> getPeriods() {
+        return periods;
+    }
+}
+
+class Dewpoint {
+    private String unitCode;
+    private double value;
+
+    public String getUnitCode() {
+        return unitCode;
+    }
+
+    public void setUnitCode(String unitCode) {
+        this.unitCode = unitCode;
+    }
+
+    public double getValue() {
+        return value;
+    }
+
+    public void setValue(double value) {
+        this.value = value;
+    }
+}
+
+class RelativeHumidity {
+    private String unitCode;
+    private int value;
+
+    public String getUnitCode() {
+        return unitCode;
+    }
+
+    public void setUnitCode(String unitCode) {
+        this.unitCode = unitCode;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
     }
 }
 class Elevation {

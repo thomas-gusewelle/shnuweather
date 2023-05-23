@@ -1,13 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+
 <head>
     <meta charset="UTF-8">
-    <title>Hi Weather</title>
+    <title>Weather Results</title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+
+    <!--Custom styles for grid container and grid children-->
+    <style>
+        .grid{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        .child{
+            padding: .25rem .5rem;
+            border: solid .15rem #f3f3f3 ;
+            border-radius: .25rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+    </style>
 </head>
 <body>
 <div th:replace="~{/components/navbar :: navbar}"></div>
 <div class="container">
-    <p></p>
+<!--    Takes in the city and state from the Query params and displays-->
+    <h1 th:text="'Weather Results for ' + ${city} + ', ' + ${state}"></h1>
+    <div class="grid">
+<!--        displays the weather for each day in a 2 column grid.-->
+        <div class="child" th:each="period : ${periods}" >
+            <div class="">
+                <h2 th:text="${period.getName()}"></h2>
+                <p th:text="${period.getDetailedForecast()}"></p>
+            </div>
+            <div>
+                <img th:src="${period.getIcon()}" th:alt="${period.getShortForecast()}">
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
 </div>
 </body>
 </html>

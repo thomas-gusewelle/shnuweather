@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th = "http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Hello World`</title>
+    <title>SNHU Weather - Search</title>
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
 </head>
 <body>
@@ -11,9 +11,11 @@
 
 
     <div class="d-flex justify-content-end">
+<!--        Button with JS function that uses GeoLocation API-->
         <button onclick="getLocation()" class="btn btn-dark">Find my Location</button>
     </div>
 
+<!--Form for taking in latitude and longitude - posts to /search-->
     <form th:action="@{/search}" th:object="${coordinateForm}" method="post">
         <label for="longitudeInput" class="form-label">Longitude</label>
         <input class="form-control" id="longitudeInput" th:field="*{longitude}"></input>
